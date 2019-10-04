@@ -1,0 +1,71 @@
+<html>
+  <head>
+  <meta name="viewport"content="width=device-width"/>
+  <title>Google Maps com javaScript</title>
+
+  <style>
+    body {
+
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12px;
+    }
+  </style>
+
+  <script type="text/javascript">
+      var map = null;
+  
+      function chamaMapa() {
+        var latlng = new google.maps.LatLng(-23.64340873969638, -46.730219057147224);
+        var myOptions = {
+                zoom: 15,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            map.setCenter(new google.maps.LatLng(-20.7233106, -46.6146444));
+      }
+      function abreLink() {
+            window.open('http://www.google.com.br');
+      }
+      function FazMarcacao(lat, long) {
+  
+        var latlong = lat + "," + long;
+        var myLatLgn = new google.maps.LatLng(lat, long);
+        map.setZoom(17);
+        
+        var marker = new google.maps.Marker({ position: myLatLgn, map: map });
+        
+        map.setCenter(myLatLgn);
+      }
+    </script>
+
+  </head>
+
+  <body onload="chamaMapa();">
+    <h1>Mapa Google Maps</h1>
+    <form method="post" action="">
+      <fieldset>
+          <legend>
+              Cadastro:<br>
+          </legend>
+              latitude: <input id="latitude" type="text" /> <br /> <!--linha que pode dar erro-->
+              longitude: <input id="longitude" type="text" /> <br /> <!--linha que pode dar erro-->
+              <a class="navbar-brand" href="{% url 'polls:post_list' %}">polls</a>
+          {% csrf_token %}
+          <table>
+              <td> {{ mapForm.as_Restaurante }} </td>
+          </table>
+          <hr />
+          <input id="marcar" type="submit" value="Enviar dados" onclick="FazMarcacao(latitude.value, longitude.value)" /> <!--linha que pode dar erro-->
+      </fieldset>
+    </form>
+
+    <div id="map_canvas" style="width: 95%; height: 432px">
+      
+    </div>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUtJ7obvAEaAt9S2xrBWnxyZjImHj_vo8&callback=initMap">
+    </script>
+  </body>
+</html>

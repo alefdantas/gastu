@@ -17,8 +17,8 @@ class Restaurante(models.Model):
     descricao = models.CharField(max_length=500)
     bairro = models.ForeignKey(Bairro, on_delete=models.CASCADE)
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
-
-   
+    latitude = models.CharField(max_length=100)
+    longitude = models.CharField(max_length=100)
     
 class Pessoa(models.Model):
     cpf = models.CharField(max_length=200, primary_key=True)
