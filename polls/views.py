@@ -1,9 +1,8 @@
-from django.shortcuts import render, render_to_response, RequestContext, get_object_or_404
-from .forms import SalvarIten
+from django.shortcuts import render, render_to_response, get_object_or_404
+from .forms import SalvarIten, mapForm
 from django.http import HttpResponse
 from .models import Restaurante
 
-from meusite.forms import mapForm
 # Create your views here.
 
 def menu(request):

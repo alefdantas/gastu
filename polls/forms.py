@@ -1,5 +1,4 @@
 from django import forms
-from django.forms import extras
 from django.core.validators import RegexValidator
 
 import re 
@@ -24,12 +23,7 @@ class SalvarIten(forms.ModelForm):
         fields = ('nome', 'descricao', 'disponibilidade','valor')
 
 class mapForm(forms.ModelForm):
- 
-    # Define Widgets
-    # Usando o modelo do restaurante, apenas latitude e longitude
-    latitude = forms.CharField(required=True, validators=[caracteres])
-    longitude = forms.CharField(required=True, validators=[caracteres]) 
- 
     # Associa formulario ao modelo
     class Meta:
         model = Restaurante
+        fields = ('latitude', 'longitude')
