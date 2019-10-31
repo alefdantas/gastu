@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Exibir cardápio</title>
+    {% load static %}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
@@ -19,7 +20,7 @@
                 {% csrf_token %}
             
                 {% for prato in pratos %}
-                <h5>Foto do Prato: {{ prato.foto }}</h5>
+                    <h5>Foto do Prato: <img src= "{% static  '/media/' %}{{prato.foto}}" /> </h5>
                 <h5>Nome do Prato: {{ prato.nome }}</h5>
                 <h5>Descricao do Prato: {{ prato.descricao }}<h5>
                 <h5>Valor do Prato: {{ prato.valor }}<h5>

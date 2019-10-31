@@ -71,6 +71,11 @@ TEMPLATES = [
     },
 ]
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
+
 WSGI_APPLICATION = 'ppi.wsgi.application'
 
 
@@ -128,3 +133,4 @@ MEDIA_ROOT = 'media'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
