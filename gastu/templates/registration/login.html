@@ -8,7 +8,8 @@
 		<form action="." method="post">
 			{% csrf_token %}
 			{{ form.as_p }}
-			<input class="btn btn-primary" type="submit" value="Login">
+			<input class="btn btn-primary" type="submit" value="Login"><br><br>
+			<a href="polls/mapa.html"><input class="btn btn-primary" type="button" value="Minha localização"></a>
 		</form>
 	</div>
 {% endblock %}
