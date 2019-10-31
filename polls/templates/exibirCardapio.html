@@ -1,0 +1,40 @@
+{% extends 'gastu/base.html' %}
+{% block title %}Exibir Cardápio{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exibir cardápio</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container" style="width: 500px; font-family: TimesNewRoman; text-align: left;" align="center">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                {% csrf_token %}
+            
+                {% for prato in pratos %}
+                <h5>Foto do Prato: {{ prato.foto }}</h5>
+                <h5>Nome do Prato: {{ prato.nome }}</h5>
+                <h5>Descricao do Prato: {{ prato.descricao }}<h5>
+                <h5>Valor do Prato: {{ prato.valor }}<h5>
+                <h5>Disponibilidade do Prato: {{ prato.disponibilidade }}<h5>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+<!--codigos script-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"crossorigin="anonymous"></script>
+</body>
+</html>
+{% endblock %}
+
+

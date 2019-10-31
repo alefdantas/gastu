@@ -32,11 +32,10 @@ from . import views
 app_name = 'polls'
 
 urlpatterns = [
-    #path('', views.post_list, name='post_list'),
-    #path('<slug:slug>', views.post_detail, name='post_detail'),
-    #path('sobre-nos/', views.about, name='about'),
-    #path('contato/', views.contact, name='contact'),
-
-    path('', views.menu, name='menu'),
+   
+    path('cadastro/', views.cadastro_de_cardapio, name='cadastro_de_cardapio'),
+    path('exibir/', views.exibirCardapio, name='exibirCardapio'),
+    path('localizacao/', views.mapView, name='mapa'),
+   
    
 ]

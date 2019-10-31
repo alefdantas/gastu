@@ -1,6 +1,6 @@
 from django import forms
 from django.core.validators import RegexValidator
-
+from .models import Usuario, Prato, Restaurante, Itens
 import re 
 
 # cria objeto Regex
@@ -10,20 +10,22 @@ caracteres = RegexValidator(
     message="Permitido somente caracteres Alpha numericos",
     code="invalid")
 
-from .models import Usuario, Itens, Restaurante
+
 
 class SalvarLogin(forms.ModelForm):
 
     class Meta:
         model = Usuario
         fields = ('latitude', 'longitude','email','username','senha','pessoa')
-class SalvarIten(forms.ModelForm):
-    class Meta:
-        model = Itens
-        fields = ('nome', 'descricao', 'disponibilidade','valor')
 
+class FormCardapio(forms.ModelForm):
+
+    class Meta:
+        model = Prato
+        fields = ('foto','nome', 'descricao','valor','disponibilidade')
+        
 class mapForm(forms.ModelForm):
     # Associa formulario ao modelo
     class Meta:
-        model = Restaurante
+        model = Usuario
         fields = ('latitude', 'longitude')

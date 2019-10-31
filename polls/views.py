@@ -1,24 +1,30 @@
-from django.shortcuts import render, render_to_response, get_object_or_404
-from .forms import SalvarIten, mapForm
+from django.shortcuts import render, render_to_response, get_object_or_404,HttpResponseRedirect, redirect
+from .forms import FormCardapio, mapForm
+from django.template import RequestContext
 from django.http import HttpResponse
-from .models import Restaurante
-
+from .models import Restaurante, Prato
 # Create your views here.
 
 def menu(request):
-    return render(request,'menu/index.html')
-
-def salvar_dados(request):
+    return render(request,'index.html')
+def exibirCardapio(request):
+    return render(request,'exibirCardapio.html',{'pratos': Prato.objects.all()})
+def cadastro_de_cardapio(request):
+    form_class = FormCardapio
+    form = form_class(request.POST or None)
+    user = request.user
     if request.method == "POST":
-        form = SalvarIten(request.POST)
+        form = FormCardapio(request.POST)
         if form.is_valid():
-            post = form.save()
-            post.save()
+            card = form.save(commit=False)
             
-    elif(request.method == 'GET'):
-        return render(request, 'polls/cadastrarCardapio.html', {'form': form})
 
-def home(request):
+            card.post = request.user
+            card.save()
+    else:
+        form = FormCardapio()
+    return render(request, 'cadastrarCardapio.html', {'form': form})
+def mapView(request):
  
     # Cria form
     form = mapForm(request.POST or None)   
@@ -31,5 +37,6 @@ def home(request):
  
     # Chama Template
     return render_to_response("mapa.html",
-                              locals(),
-                              context_instance = RequestContext(request))
+                            {'mapView': mapView},
+                            locals(),
+                            context_instance = RequestContext(request))
