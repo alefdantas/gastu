@@ -1,0 +1,15 @@
+{% extends 'gastu/base.html' %}
+{% block title %}Faça o login{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h1>Faça o seu login</h1>
+		<p>Ainda não tem sua conta? <a href="{% url 'account:registrar' %}">Crie aqui!</a></p>
+		<form action="." method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input class="btn btn-primary" type="submit" value="Login"><br><br>
+			<a href="polls/mapa.html"><input class="btn btn-primary" type="button" value="Minha localização"></a>
+		</form>
+	</div>
+{% endblock %}
