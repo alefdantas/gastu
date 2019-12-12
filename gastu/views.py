@@ -16,6 +16,7 @@ def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     return render(request, 'gastu/post_detail.html', {'post':post})
 
+<<<<<<< HEAD
 def tourism(request):
 	return render(request, 'gastu/tourism.html')
 
@@ -30,5 +31,9 @@ def idea(request):
 
 def detail(request):
 	return render(request, 'gastu/detail.html')
+=======
+
+
+>>>>>>> c126218ebc02eef57b3151b6b57b42a53877caeb
 
 
