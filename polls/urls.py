@@ -37,13 +37,8 @@ urlpatterns = [
     path('cadastro/', views.cadastro_de_cardapio, name='cadastro_de_cardapio'),
     path('exibir/', views.exibirCardapio, name='exibirCardapio'),
     path('localizacao/', views.mapView, name='mapa'),
-<<<<<<< HEAD
     path('update/<int:pk>/', views.update_cardapio, name='update_cardapio'),
     path('delete/<int:pk>/', views.delete_cardapio, name='delete_cardapio'),
     path('base/', views.base_metodo, name='base_metodo'),
 
-=======
-   
->>>>>>> c126218ebc02eef57b3151b6b57b42a53877caeb
-   
 ]
