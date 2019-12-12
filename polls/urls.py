@@ -39,6 +39,7 @@ urlpatterns = [
     path('localizacao/', views.mapView, name='mapa'),
     path('update/<int:pk>/', views.update_cardapio, name='update_cardapio'),
     path('delete/<int:pk>/', views.delete_cardapio, name='delete_cardapio'),
-   
+    path('base/', views.base_metodo, name='base_metodo'),
+
    
 ]

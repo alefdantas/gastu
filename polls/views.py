@@ -3,12 +3,19 @@ from .forms import FormCardapio, mapForm
 from django.template import RequestContext
 from django.http import HttpResponse
 from .models import Restaurante, Prato
+from django.conf.urls.static import static
+
 # Create your views here.
+
+def base_metodo(request):
+    return render(request,'polls/base3.html')
 
 def menu(request):
     return render(request,'index.html')
+
 def exibirCardapio(request):
     return render(request,'exibirCardapio.html',{'pratos': Prato.objects.all()})
+
 def cadastro_de_cardapio(request):
     form_class = FormCardapio
     form = form_class(request.POST or None)
@@ -33,19 +40,17 @@ def update_cardapio(request, pk):
 def delete_cardapio(request, pk):
     consulta = Prato.objects.get(pk=pk)
     consulta.delete()
+
 def mapView(request):
- 
+    restaurantes = Restaurante.objects.all()
     # Cria form
-    form = mapForm(request.POST or None)   
+    #form = mapForm(request.POST or None)   
  
     # Valida e salva
-    if form.is_valid():
-        salvar = form.save(commit=False)
-        salvar.save()
-        return HttpResponse("Dados inseridos com sucesso!")
- 
+   # if form.is_valid():
+    #    salvar = form.save(commit=False)
+    #    salvar.save()
+    #    return HttpResponse("Dados inseridos com sucesso!")
+ #
     # Chama Template
-    return render_to_response("mapa.html",
-                            {'mapView': mapView},
-                            locals(),
-                            context_instance = RequestContext(request))
+    return render(request, "polls/mapa.html" ,{"restaurantes":restaurantes})
