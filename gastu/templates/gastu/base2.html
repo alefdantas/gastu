@@ -49,19 +49,6 @@
                    </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                             <a class="dropdown-item" href="{% url 'gastu:about' %}">Quem somos?</a>
-                                            <a class="dropdown-item" href="{% url 'gastu:idea' %}">Ideia do projeto</a>
-                                        </div>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-                    Dados
-                    <span class="icon-arrow-down"></span>
-                  </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="{% url 'gastu:tourism' %}">Turismo</a>
-                                            <a class="dropdown-item" href="{% url 'gastu:gastronomy' %}">Gastronomia</a>
-                                            <a class="dropdown-item" href="{% url 'gastu:rn' %}">Rio Grande do Norte</a>
                                         </div>
                                     </li>
                                     <li class="nav-item active">
@@ -149,8 +136,8 @@
                             <figure class="effect-ruby">
                                 <img src= "{% static  '/media/imagens/find-place1.jpg' %}" />
                                 <figcaption>
-                                    <h5>Barzinhossss </h5>
-                                    <p>385 Listings</p>
+                                    <h5>Barzinhos</h5>
+                                    <p>85 Listings</p>
                                 </figcaption>
                             </figure>
                         </div>
@@ -180,7 +167,7 @@
                                         <img src="{% static  '/media/imagens/parque.jpg' %}" class="img-fluid" alt="img13" />
                                         <figcaption>
                                             <h5>Parques </h5>
-                                            <p>114 Listings</p>
+                                            <p>14 Listings</p>
                                         </figcaption>
                                     </figure>
                                 </div>
@@ -268,7 +255,7 @@
                 </div>
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
-                        <a href="detail.html">
+                        <a href="{% url 'gastu:detail2'%}">
                             <img src="{% static  '/media/imagens/mangai.jpg' %}" class="img-fluid" alt="#">
                             <span class="featured-rating-orange">6.5</span>
                             <div class="featured-title-box">
@@ -299,7 +286,7 @@
                 </div>
                 <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
-                        <a href="detail.html">
+                        <a href="{% url 'gastu:detail'%}">
                             <img src="{% static  '/media/imagens/taipa.jpg' %}" class="img-fluid" alt="#">
                             <span class="featured-rating">3.2</span>
                             <div class="featured-title-box">
@@ -550,7 +537,7 @@
                 <div class="col-md-12">
                     <div class="copyright">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p>Copyright &copy; 2018 Listing. All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+                        <p>Copyright &copy; 2019. Projeto <i class="ti-heart" aria-hidden="true"></i> by <a href="http://127.0.0.1:8000/" target="_blank">Gastu</a></p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         <ul>
                             <li><a href="#"><span class="ti-facebook"></span></a></li>

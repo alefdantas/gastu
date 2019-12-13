@@ -9,11 +9,8 @@ urlpatterns = [
     path('/<slug:slug>', views.post_detail, name='post_detail'),
     path('sobre-nos/', views.about, name='about'),
     path('contato/', views.contact, name='contact'),
-    path('turismo/', views.tourism, name='tourism'),
-    path('gastronomia/', views.gastronomy, name='gastronomy'),
-    path('rio-grande-do-norte/', views.rn, name='rn'),
-    path('ideia/', views.idea, name='idea'),
     path('detail/', views.detail, name='detail'),
+    path('detail2/', views.detail2, name='detail2'),
  	path('polls/', include('polls.urls')),
      
 ]
