@@ -144,6 +144,16 @@
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="col-md-12">
+                        <div class="grid">
+                            <div id="map" style="width: 95%; height: 600px">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div class="row find-img-align">
                         <div class="col-md-12">
                             <div class="find-place-img_wrap">
@@ -559,7 +569,6 @@
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
     <script>
         $(window).scroll(function() {
             // 100 = The point you would like to fade the nav in.
@@ -574,6 +583,68 @@
 
             };
         });
+    </script>
+
+    <!-- adicionando mapa -->
+
+    <script>
+        var map, infoWindow;
+
+        function addMarker(location, label, map) {
+         // Add the marker at the clicked location, and add the next-available label
+        // from the array of alphabetical characters.
+        var marker = new google.maps.Marker({
+          position: location,
+          label: labels[labelIndex++ % labels.length],
+          map: map
+          });
+        }
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -5.865558, lng: -36.762921},
+            zoom: 8
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+        //Adicionando marcadores do banco de dados
+        {% for d in restaurantes %}
+       addMarker({lat:'{{d.latitude}}', lng:'{{d.longitude}}'},"{{d.nome}}", map )
+        {% endfor %}
+
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: '-6.447180',
+              lng: '-37.069751'
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Localização encontrada.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+    </script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGH6NlaGmPuhg--nL936Lr4PApB6N5v58&callback=initMap">
     </script>
 </body>
 

@@ -23,3 +23,4 @@ def detail2(request):
 	return render(request, 'gastu/detail2.html')
 
 
+

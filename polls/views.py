@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response, get_object_or_404,HttpResponseRedirect, redirect
+from django.shortcuts import render, get_object_or_404,HttpResponseRedirect, redirect
 from .forms import FormCardapio, mapForm
 from django.template import RequestContext
 from django.http import HttpResponse
@@ -48,11 +48,11 @@ def mapView(request):
     #form = mapForm(request.POST or None)   
  
     # Valida e salva
-   # if form.is_valid():
+    # if form.is_valid():
     #    salvar = form.save(commit=False)
     #    salvar.save()
     #    return HttpResponse("Dados inseridos com sucesso!")
- #
+    #
     # Chama Template
-    return render(request, "polls/mapa.html" ,{"restaurantes":restaurantes})
+    return render(request, "gastu/base2.html" ,{"restaurantes":restaurantes})
 
