@@ -25,6 +25,7 @@ urlpatterns = [
 	path('', include('gastu.urls')),
     path('admin/', admin.site.urls),
     path('menu/', include('polls.urls')),
+    path('polls/', include('polls.urls')),
     path('account/', include('account.urls')),
     path('account/', include('django.contrib.auth.urls')),
     

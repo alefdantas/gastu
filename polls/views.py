@@ -11,10 +11,10 @@ def base_metodo(request):
     return render(request,'polls/base3.html')
 
 def menu(request):
-    return render(request,'index.html')
+    return render(request,'polls/index.html')
 
 def exibirCardapio(request):
-    return render(request,'exibirCardapio.html',{'pratos': Prato.objects.all()})
+    return render(request,'polls/exibirCardapio.html', {'pratos': Prato.objects.all()})
 
 def cadastro_de_cardapio(request):
     form_class = FormCardapio
