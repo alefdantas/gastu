@@ -8,13 +8,13 @@ from django.conf.urls.static import static
 # Create your views here.
 
 def base_metodo(request):
-    return render(request,'polls/base3.html')
+    return render(request,'base3.html')
 
 def menu(request):
-    return render(request,'polls/index.html')
+    return render(request,'index.html')
 
 def exibirCardapio(request):
-    return render(request,'polls/cadastrarCardapio.html', {'pratos': Prato.objects.all()})
+    return render(request,'exibirCardapio.html', {'pratos': Prato.objects.all()})
 
 def cadastro_de_cardapio(request):
     form_class = FormCardapio
