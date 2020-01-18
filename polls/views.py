@@ -23,23 +23,22 @@ def cadastro_de_cardapio(request):
     user = request.user
 
     if request.method == 'POST':
-        form = FormCardapio(request.POST)
+        form = FormCardapio(request.POST, request.FILES)
+        print(form.errors );
         if form.is_valid():
             post_foto = form.cleaned_data['foto']
             post_nome = form.cleaned_data['nome']
             post_descricao = form.cleaned_data['descricao']
             post_valor = form.cleaned_data['valor']
             post_disponibilidade = form.cleaned_data['disponibilidade']
-            card = form.save(commit=False)
 
-            new_post = Post(foto=post_foto, nome=post_nome, descricao=post_descricao, valor=post_valor, disponibilidade=post_disponibilidade)
-            card.post = request.user
-            card.save()
+            new_post = Prato(foto=post_foto, nome=post_nome, descricao=post_descricao, valor=post_valor, disponibilidade=post_disponibilidade)
+            new_post.save()
+            return redirect('polls:exibirCardapio')
 
-            return redirect('cadastro_de_cardapio')
 
-    elif(request.method == 'GET'):
-        return render(request, 'cadastrarCardapio.html', {'form': form})
+        elif(request.method == 'GET'):
+            return render(request, 'cadastrarCardapio.html', {'form': form})
 
 def update_cardapio(request, pk):
     consulta = Prato.objects.get(pk=pk)

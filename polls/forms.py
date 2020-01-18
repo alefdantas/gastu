@@ -19,11 +19,11 @@ class SalvarLogin(forms.ModelForm):
         model = Usuario
         fields = ('latitude', 'longitude','email','username','senha','pessoa')
 
-class FormCardapio(forms.ModelForm):
+class FormCardapio(ModelForm):
 
     class Meta:
         model = Prato
-        fields = ('nome', 'descricao','valor','disponibilidade', 'foto')
+        fields = ['nome', 'descricao','valor','disponibilidade', 'foto']
         
 class mapForm(forms.ModelForm):
     # Associa formulario ao modelo

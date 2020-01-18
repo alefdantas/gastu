@@ -79,14 +79,16 @@
     <!--============================= BOOKING =============================-->
 
 <body background="{% static  '/media/imagens/123.png' %}">
-    <div id="fh5co-menus" data-section="menu">
+
+     <div id="fh5co-menus" data-section="menu">
         <div class="container">
             <div class="row text-center fh5co-heading row-padded">
                 <div class="col-md-10 col-md-offset-2" style="margin-top: 150px">
                     <h2 class="heading to-animate" ><i>Cadastrar Pratos</i></h2><br>
                 </div>
             </div>
-            <form method="POST"  >
+            {% block content %}
+            <form method="POST"  enctype="multipart/form-data" action=".">
                 <div class="container" style="width: 500px;" align="center">
                     <div class="jumbotron jumbotron-fluid">
                         <div class="container">
@@ -99,7 +101,8 @@
                     </div>
                 </div>
             </form>
-        </div>  
+            {% endblock %}
+        </div>
     </div>
     <!--============================= FOOTER =============================-->
     <footer class="main-block dark-bg">
