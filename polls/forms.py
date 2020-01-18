@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 from django.core.validators import RegexValidator
 from .models import Usuario, Prato, Restaurante, Itens
 import re 
@@ -22,7 +23,7 @@ class FormCardapio(forms.ModelForm):
 
     class Meta:
         model = Prato
-        fields = ('foto','nome', 'descricao','valor','disponibilidade')
+        fields = ('nome', 'descricao','valor','disponibilidade', 'foto')
         
 class mapForm(forms.ModelForm):
     # Associa formulario ao modelo

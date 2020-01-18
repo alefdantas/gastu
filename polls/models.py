@@ -50,7 +50,7 @@ class Prato(models.Model):
     descricao = models.CharField(max_length=100)
     valor = models.IntegerField()
     disponibilidade = models.CharField(max_length=25)
-    foto = models.ImageField(upload_to='imagens1/')
+    foto = models.ImageField(upload_to='imagens/')
 
 class Itens(models.Model):
     nome = models.CharField(max_length=50)

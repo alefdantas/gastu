@@ -14,21 +14,20 @@
 </head>
 
 <body>
+    {% for prato in pratos %}
     <div class="container" style="width: 500px; font-family: TimesNewRoman; text-align: left;" align="center">
+        <!-- essa div a seguir deixa fofo-->
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                {% csrf_token %}
-            
-                {% for prato in pratos %}
                 <h5>Foto do Prato: <img src= "{% static  '/media/' %}{{prato.foto}}" /> </h5>
                 <h5>Nome do Prato: {{ prato.nome }}</h5>
                 <h5>Descricao do Prato: {{ prato.descricao }}<h5>
                 <h5>Valor do Prato: {{ prato.valor }}<h5>
                 <h5>Disponibilidade do Prato: {{ prato.disponibilidade }}<h5>
-                {% endfor %}
             </div>
         </div>
     </div>
+    {% endfor %}
 
 <!--codigos script-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"crossorigin="anonymous"></script>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404,HttpResponseRedirect, redirect
 from .forms import FormCardapio, mapForm
 from django.template import RequestContext
+from django.core.paginator import Paginator
 from django.http import HttpResponse
 from .models import Restaurante, Prato
 from django.conf.urls.static import static
@@ -14,22 +15,31 @@ def menu(request):
     return render(request,'index.html')
 
 def exibirCardapio(request):
+    exibir = Prato.objects.all().order_by('-created_at')
     return render(request,'exibirCardapio.html', {'pratos': Prato.objects.all()})
 
 def cadastro_de_cardapio(request):
-    form_class = FormCardapio
-    form = form_class(request.POST or None)
+    form = FormCardapio()
     user = request.user
-    if request.method == "POST":
+
+    if request.method == 'POST':
         form = FormCardapio(request.POST)
         if form.is_valid():
+            post_foto = form.cleaned_data['foto']
+            post_nome = form.cleaned_data['nome']
+            post_descricao = form.cleaned_data['descricao']
+            post_valor = form.cleaned_data['valor']
+            post_disponibilidade = form.cleaned_data['disponibilidade']
             card = form.save(commit=False)
 
+            new_post = Post(foto=post_foto, nome=post_nome, descricao=post_descricao, valor=post_valor, disponibilidade=post_disponibilidade)
             card.post = request.user
             card.save()
-    else:
-        form = FormCardapio()
-    return render(request, 'cadastrarCardapio.html', {'form': form})
+
+            return redirect('cadastro_de_cardapio')
+
+    elif(request.method == 'GET'):
+        return render(request, 'cadastrarCardapio.html', {'form': form})
 
 def update_cardapio(request, pk):
     consulta = Prato.objects.get(pk=pk)
