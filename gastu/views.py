@@ -1,6 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Post
+from polls.models import Restaurante, Prato
+
+def exibeRestaurantes(request):
+    return render(request,'base2.html', {'restaurantes' : Restaurante.objects.all()})
+
+def redirecCardap1(request):
+    return render(request,'detail.html', {'prato' : Prato.objects.all()})
+
+def redirecCardap2(request):
+    return render(request,'detail.html', {'restaurante' : Restaurante.objects.all()})
 
 def post_list(request):
 	posts = Post.objects.all().order_by('-created_at')

@@ -126,22 +126,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>Brasileira, Frutos do mar, Opções vegetarianas</h5>
-                    <p><span>$$$</span>$$</p>
-                    <p class="reserve-description">Cozinha inovadora, combinada com bons vinhos em um ambiente moderno.</p>
+                    <h5>Comida Brasileira</h5>
+                    <p class="reserve-description">Cozinhas inovadoras, combinada com o melhor da cultura brasileira.</p>
                 </div>
                 <div class="col-md-6">
                     <div class="reserve-seat-block">
-                        <div class="reserve-rating">
-                            <span>9.5</span>
-                        </div>
-                        <div class="review-btn">
-                            <a href="#" class="btn btn-outline-danger">ESCREVA UMA CRÍTICA</a>
-                            <span>34 visualizações</span>
-                        </div>
                         <div class="reserve-btn">
                             <div class="featured-btn-wrap">
-                                <a href="{% url 'polls:exibirCardapio' %}" class="btn btn-danger">CARDÁPIO</a>
+                                <a href="{% url 'polls:exibirCardapio' %} {{ prato.id_restaurante }}" class="btn btn-danger">CARDÁPIO</a>
                             </div>
                         </div>
                     </div>
@@ -150,162 +142,25 @@
         </div>
     </section>
     <!--//END RESERVE A SEAT -->
-    <!--============================= BOOKING DETAILS =============================-->
+       <!--============================= BOOKING DETAILS =============================-->
     <section class="light-bg booking-details_wrap">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 responsive-wrap">
                     <div class="booking-checkbox_wrap">
                         <div class="booking-checkbox">
-                            <p>Inaugurado em 2005, o Camaroes Potiguar surgiu inicialmente com o intuito de receber a clientela excedente que o Camaroes Restaurante ja nao mais comportava.</p>
-
-                            <p> A apenas 500 metros da primeira casa, o Camaroes Potiguar foi pensado a partir de um foco mais turistico, com elementos tipicos e culinaria regional para receber o turista que vem a Natal. Acontece que, rapidamente, o cliente natalense, sempre fiel a Casa, abracou este novo projeto e tornou-se igualmente frequentador, exigindo o mesmo estilo de servico que encontrava no Camaroes Restaurante.
-
-                            <p> Em apenas um ano, foram feitas inumeras mudancas no intuito de adequar o projeto inicial as exigencias da clientela: receitas internacionais foram incluidas, mesas em madeira sem toalhas e panelas de barros deram lugar ao tradicional mise-en-place, dentre outras mudancas.</p> O Camaroes Potiguar conseguiu, assim, manter a qualidade dos produtos e servicos em um novo ambiente igualmente agradavel, aconchegante, com decoracao e arquitetura marcantes, unindo a rusticidade dos elementos regionais a tracos de requinte e muito conforto. Elogiado e reconhecido pela critica especializada, sendo constantemente apontado como o melhor restaurante da cidade, o Camaroes Potiguar representa uma excelente opcao para uma deliciosa refeicao em um ambiente aconchegante e sofisticado, com vista para a Praia de Ponta Negra e o Morro do Careca, cartão postal de Natal.</p>
+                            <p>{{restaurante.descricao}}</p>
                             <hr>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label class="custom-checkbox">
-                        <span class="ti-check-box"></span>
-                        <span class="custom-control-description">Estacionamento para bicicletas</span>
-                      </label> </div>
-                            <div class="col-md-4">
-                                <label class="custom-checkbox">
-                       <span class="ti-check-box"></span>
-                       <span class="custom-control-description">Internet sem fio</span>
-                     </label>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="custom-checkbox">
-                     <span class="ti-check-box"></span>
-                     <span class="custom-control-description">Permitido fumar</span>
-                   </label> </div>
-                            <div class="col-md-4">
-                                <label class="custom-checkbox">
-                    <span class="ti-check-box"></span>
-                    <span class="custom-control-description">Street Parking</span>
-                  </label>
-                            </div>
-                            <div class="col-md-4">
-                                <label class="custom-checkbox">
-                   <span class="ti-check-box"></span>
-                   <span class="custom-control-description">Especial</span>
-                 </label> </div>
-                            <div class="col-md-4">
-                                <label class="custom-checkbox">
-                  <span class="ti-check-box"></span>
-                  <span class="custom-control-description">Aceita cartões de crédito</span>
-                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="booking-checkbox_wrap mt-4">
-                        <h5>34 visualizações</h5>
-                        <hr>
-                        <div class="customer-review_wrap">
-                            <div class="customer-img">
-                                <img src="{% static  '/media/imagens/customer-img1.jpg' %}" class="img-fluid" alt="#">
-                                <p>Larissa Vale</p>
-                                <span>35 visualizações</span>
-                            </div>
-                            <div class="customer-content-wrap">
-                                <div class="customer-content">
-                                    <div class="customer-review">
-                                        <h6>Melhor camarão da cidade de Natal</h6>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span class="round-icon-blank"></span>
-                                        <p>Avaliado 2 dias atrás</p>
-                                    </div>
-                                    <div class="customer-rating">8.0</div>
-                                </div>
-                                <p class="customer-text">Eu amo o camarão daqui, apesar de que venho poucas vezes. A equipe é muito boa e não deixam a desejar no atendimento.
-                                </p>
-                                <p class="customer-text">Eu amo como você pode ver o que acontece na cozinha e vê-los fazer o camarão. Os preços são ótimos. Você apenas tem que lembrar trazer dinheiro.
-                                </p>
-                                <ul>
-                                    <li><img src="{% static  '/media/imagens/review-img1.jpg' %}" class="img-fluid" alt="#"></li>
-                                    <li><img src="{% static  '/media/imagens/review-img2.jpg' %}" class="img-fluid" alt="#"></li>
-                                    <li><img src="{% static  '/media/imagens/review-img3.jpg' %}" class="img-fluid" alt="#"></li>
-                                </ul>
-                                <span>28 pessoas marcaram esta avaliação como útil</span>
-                                <a href="#"><span class="icon-like"></span>Útil</a>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="customer-review_wrap">
-                            <div class="customer-img">
-                                <img src="{% static  '/media/imagens/customer-img2.jpg' %}" class="img-fluid" alt="#">
-                                <p>Kevin O Chris</p>
-                                <span>17 visualizações</span>
-                            </div>
-                            <div class="customer-content-wrap">
-                                <div class="customer-content">
-                                    <div class="customer-review">
-                                        <h6>Uma loja antiga da velha escola.</h6>
-                                        <span class="customer-rating-red"></span>
-                                        <span class="round-icon-blank"></span>
-                                        <span class="round-icon-blank"></span>
-                                        <span class="round-icon-blank"></span>
-                                        <span class="round-icon-blank"></span>
-                                        <p>Avaliado 3 meses atrás</p>
-                                    </div>
-                                    <div class="customer-rating customer-rating-red">2.0</div>
-                                </div>
-                                <p class="customer-text">Os bolinhos eram tão gordurosos ... o macarrão de camarão frito era o mesmo. Tanto óleo e graxa era difícil de comer. O macarrão de camarão vem apenas com 3 camarões (felizmente o prato em si é barato)</p>
-                                <p class="customer-text">A sopa de macarrão de carne foi ok. Adicionei vinagre preto no caldo para dar um sabor extra. A sopa tem bok choy que eu gostei - é um bom elemento textural. A loja em si é realmente imunda (que é o caso em muitos restaurantes em Chinatown) Eles não limpam as mesas depois que os clientes comem. Se você entrar na cozinha, muitos dos suprimentos estão no chão, o que é perturbador... </p>
-                                <span>10 pessoas marcaram esta avaliação como útil</span>
-                                <a href="#"><span class="icon-like"></span>Útil</a>
-                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 responsive-wrap">
                     <div class="contact-info">
-                        <img src="{% static  '/media/imagens/map.jpg' %}" class="img-fluid" alt="#">
+                        <div id="map" style="width: 403px; height: 291px"></div>
                         <div class="address">
                             <span class="icon-location-pin"></span>
-                            <p> Rua Pedro Fonseca Filho<br> 8077, Natal, Rio Grande do Norte<br></p>
+                            <p> {{restaurante.cidade}}<br> 8077, {{restaurante.bairro}}<br></p>
                         </div>
-                        <div class="address">
-                            <span class="icon-screen-smartphone"></span>
-                            <p> +55 84 3209-2425</p>
-                        </div>
-                        <div class="address">
-                            <span class="icon-link"></span>
-                            <p>https://camaroes.com.br</p>
-                        </div>
-                        <div class="address">
-                            <span class="icon-clock"></span>
-                            <p>Seg - Sex 09:30 am - 05:30 pm <br>
-                                <span class="open-now">ABERTO AGORA</span></p>
-                        </div>
-                        <a href="#" class="btn btn-outline-danger btn-contact">RESERVAS</a>
-                    </div>
-                    <div class="follow">
-                        <div class="follow-img">
-                            <img src="{% static  '/media/imagens/follow-img.jpg' %}" class="img-fluid" alt="#">
-                            <h6>Dora Aventureira</h6>
-                            <span>Caicó</span>
-                        </div>
-                        <ul class="social-counts">
-                            <li>
-                                <h6>26</h6>
-                                <span>Posts</span>
-                            </li>
-                            <li>
-                                <h6>326</h6>
-                                <span>Seguidores</span>
-                            </li>
-                            <li>
-                                <h6>12</h6>
-                                <span>Seguindo</span>
-                            </li>
-                        </ul>
-                        <a href="#">SEGUIR</a>
                     </div>
                 </div>
             </div>
@@ -378,6 +233,20 @@
                 }
             });
         }
+
+        //declarando o mapa
+      var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: '{{ restaurante.latitude }}', lng: '{{restaurante.longitude}}' },
+          zoom: 6
+        });
+        infoWindow = new google.maps.InfoWindow;
+      }
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGH6NlaGmPuhg--nL936Lr4PApB6N5v58&callback=initMap">
     </script>
 </body>
 
