@@ -155,28 +155,29 @@
             <div class="row">
                 <!-- inicio -->
                 <div class="col-md-4 featured-responsive">
+                        {% for r in lista_de_restaurantes %}
                     <div class="featured-place-wrap">
-                        {% for r in restaurantes %}
-                        <a href="{% url 'gastu:detail' %} {{ r.id_restaurante }}">
-                            <img src="{% static  '/imagens/' %} {{ r.imagem }}" class="img-fluid" alt="#">
-                            <div class="featured-title-box">
-                                <h6> {{r.nome}} </h6>
-                                <p>Restaurante </p>
+
+                        <a href="{% url 'gastu:detail' %} {{r.id_restaurante}}">
+                            <img src="/media/{{ r.imagem }}" class="img-fluid" alt="#">
+
+                            <div class="featured-title-box">0
+                                <h6> {{ r.imagem }} </h6>
                                 <ul>
                                     <li><span class="icon-location-pin"></span>
-                                        <p>{{r.cidade}}</p>
+                                        <p>{{ r.cidade }}</p>
                                     </li>
                                     <li><span class="icon-location-pin"></span>
-                                        <p>{{r.bairro}}</p>
+                                        <p>{{ r.bairro }}</p>
                                     </li>
                                 </ul>
                                 <div class="bottom-icons">
                                     <div class="open-now">ABERTO AGORA</div>
                                 </div>
                             </div>
-                        </a>
-                        {% endfor %}
+<!--                        </a>-->
                     </div>
+                        {% endfor %}
                 </div>
                 <!-- fim -->
             </div>

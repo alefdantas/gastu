@@ -13,8 +13,8 @@ def redirecCardap2(request):
     return render(request,'detail.html', {'restaurante' : Restaurante.objects.all()})
 
 def post_list(request):
-	posts = Post.objects.all().order_by('-created_at')
-	return render(request, 'gastu/post_list.html', {'posts':posts})
+	restaurantes = Restaurante.objects.all()
+	return render(request, 'gastu/post_list.html', {'lista_de_restaurantes':restaurantes})
 
 def about(request):
 	return render(request, 'gastu/about_us.html')
