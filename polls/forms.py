@@ -30,3 +30,8 @@ class mapForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ('latitude', 'longitude')
+
+class FormRestaurante(ModelForm):
+    class Meta:
+        model = Restaurante
+        fields = ['cnpj', 'nome','nome_comercial','descricao', 'bairro', 'cidade','imagem']

@@ -4,9 +4,10 @@ from . import views
 app_name = 'polls'
 
 urlpatterns = [
-   
-    path('cadastro/', views.cadastro_de_cardapio, name='cadastro_de_cardapio'),
-    path('exibir/', views.exibirCardapio, name='exibirCardapio'),
+   	path('cadastrorestaurante/', views.cadastro_de_restaurante, name='cadastro_de_restaurante'),
+    path('cadastrocardapio/', views.cadastro_de_cardapio, name='cadastro_de_cardapio'),
+    path('exibircardapio/', views.exibirCardapio, name='exibirCardapio'),
+    path('exibirrestaurante/', views.exibirRestaurante, name='exibirRestaurante'),
     #path('localizacao/', views.mapView, name='mapa'),
     path('update/<int:pk>/', views.update_cardapio, name='update_cardapio'),
     path('delete/<int:pk>/', views.delete_cardapio, name='delete_cardapio'),
