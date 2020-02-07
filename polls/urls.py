@@ -9,8 +9,9 @@ urlpatterns = [
     path('exibircardapio/', views.exibirCardapio, name='exibirCardapio'),
     path('exibirrestaurante/', views.exibirRestaurante, name='exibirRestaurante'),
     #path('localizacao/', views.mapView, name='mapa'),
-    path('update/<int:pk>/', views.update_cardapio, name='update_cardapio'),
-    path('delete/<int:pk>/', views.delete_cardapio, name='delete_cardapio'),
+    path('updaterestaurante/<int:pk>/', views.update_restaurante, name='update_restaurante'),
+    path('updatecardapio/<int:pk>/', views.update_cardapio, name='update_cardapio'),
+    path('deletecardapio/<int:pk>/', views.delete_cardapio, name='delete_cardapio'),
     path('base/', views.base_metodo, name='base_metodo'),
 
 ]

@@ -1,0 +1,13 @@
+{% block content %}
+    <div class="container">
+        <h1>Editar '{{form.nome}}'</h1>
+        <div>
+            <form action="." method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" class="btn btn-default" value="Editar">
+            </form>
+            
+        </div>
+    </div>
+{% endblock %}
