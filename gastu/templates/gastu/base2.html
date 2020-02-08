@@ -154,8 +154,10 @@
             </div>
             <div class="row">
                 <!-- inicio -->
+
+                {% for r in lista_de_restaurantes %}
+                
                 <div class="col-md-4 featured-responsive">
-                        {% for r in lista_de_restaurantes %}
                     <div class="featured-place-wrap">
 
                         <a href="{% url 'gastu:detail' %} {{r.id_restaurante}}">
@@ -177,8 +179,8 @@
                             </div>
 <!--                        </a>-->
                     </div>
-                        {% endfor %}
                 </div>
+                        {% endfor %}
                 <!-- fim -->
             </div>
             <div class="row justify-content-center">

@@ -1,13 +1,144 @@
 {% block content %}
-    <div class="container">
-        <h1>Deletar '{{form.nome}}'</h1>
-        <div>
-            <form action="." method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" class="btn btn-default" value="Deletar">
-            </form>
-            
+
+{% load static %}
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="Colorlib">
+        <meta name="description" content="#">
+        <meta name="keywords" content="#">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
+        <!-- Simple line Icon -->
+        <link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}">
+        <!-- Themify Icon -->
+        <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+        <!-- Hover Effects -->
+        <link rel="stylesheet" href="{% static 'css/set1.css' %}">
+        <!-- Main CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+        <title> Cadastar restaurante </title>
+
+        <body background="{% static  '/media/imagens/123.png' %}">
+
+        <div class="nav-menu" style="background-color: black">
+        <div class="bg transition">
+            <div class="container-fluid fixed">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand" href="{% url 'gastu:post_list' %}">Gastu</a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icon-menu"></span>
+              </button>
+                            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     Explore
+                     <span class="icon-arrow-down"></span>
+                   </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                            <a class="dropdown-item" href="{% url 'gastu:about' %}">Quem somos?</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="{% url 'gastu:contact' %}">Contato</a>
+                                    </li>
+
+                                    {% if user.is_authenticated %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+                                    </li>
+                                    {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                    </li>
+                                    {% endif %}
+                                    <li><a href="#" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Add Listing</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                        <div class="row">
+                            {% if user.is_authenticated %}
+                            <p class="logged-in-p"><font color="white">
+                                Olá {{ user.username }} seja bem vindo, o que deseja fazer hoje? 
+                                <span class="sair"><a href="{% url 'logout' %}">Sair</a></span>
+                           </font></p>
+                            {% endif %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-{% endblock %}
+
+
+    <div class="content-fluid" align="center" style="margin-top: 120px">
+        <div class="card col-5 mt-lg-3 shadow mx-auto">
+            <div class="card-body">
+                <h6> Deletar: {{form.nome}}</h6>
+            <div>
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <input class="btn btn-primary col-3" type="submit" value="Deletar"></input><br><br>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--============================= FOOTER =============================-->
+    <footer class="main-block dark-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>Copyright &copy; 2019. Projeto <i class="ti-heart" aria-hidden="true"></i> by <a href="http://127.0.0.1:8000/" target="_blank">Gastu</a></p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <ul>
+                            <li><a href="#"><span class="ti-facebook"></span></a></li>
+                            <li><a href="#"><span class="ti-twitter-alt"></span></a></li>
+                            <li><a href="#"><span class="ti-instagram"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--//END FOOTER -->
+    
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- jQuery Easing -->
+    <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Bootstrap DateTimePicker -->
+    <script src="{% static 'js/moment.js'%}"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Waypoints -->
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <!-- Stellar Parallax -->
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+
+    <!-- Flexslider -->
+    <script src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+    <script>
+        $(function () {
+           $('#date').datetimepicker();
+       });
+    </script>
+    <!-- Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>

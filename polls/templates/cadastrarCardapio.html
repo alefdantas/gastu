@@ -1,3 +1,4 @@
+
 {% load static %}
 
 <!DOCTYPE html>
@@ -80,28 +81,24 @@
 
 <body background="{% static  '/media/imagens/123.png' %}">
 
-     <div id="fh5co-menus" data-section="menu">
-        <div class="container">
-            <div class="row text-center fh5co-heading row-padded">
-                <div class="col-md-10 col-md-offset-2" style="margin-top: 150px">
-                    <h2 class="heading to-animate" ><i>Cadastrar Pratos</i></h2><br>
-                </div>
-            </div>
-            {% block content %}
+     <div class="content-fluid" align="center" style="margin-top: 110px">
+            <div class="card col-5 mt-lg-3 shadow mx-auto">
+                <div class="card-body">
+                    <h2 class="card-title text-center" style="color: black;">Cadastrar pratos</h2><br>
+
             <form method="POST"  enctype="multipart/form-data" action=".">
                 <div class="container" style="width: 500px;" align="center">
-                    <div class="jumbotron jumbotron-fluid">
+                    <div>
                         <div class="container">
                             {% csrf_token %}
                             {{ form.as_p }} 
-                            <div style="margin-top: 30px" class="nav-item mx-0 mx-lg-1">
-                                <button type="submit"class="nav-link py-2 px-0 px-lg-3 rounded js-scroll-trigger ">     Adicionar prato </button>
-                            </div>
+                            <br>
+                            <input class="btn btn-primary col-6" type="submit" value="Adicionar restaurante"></input><br><br>
                         </div>
                     </div>
                 </div>
             </form>
-            {% endblock %}
+
         </div>
     </div>
     <!--============================= FOOTER =============================-->
