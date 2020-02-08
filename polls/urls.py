@@ -11,7 +11,8 @@ urlpatterns = [
     #path('localizacao/', views.mapView, name='mapa'),
     path('updaterestaurante/<int:pk>/', views.update_restaurante, name='update_restaurante'),
     path('updatecardapio/<int:pk>/', views.update_cardapio, name='update_cardapio'),
-    path('deletecardapio/<int:pk>/', views.delete_cardapio, name='delete_cardapio'),
+    path('deletarrestaurante/<int:pk>/', views.deletar_restaurante, name='deletar_restaurante'),
+    path('deletarcardapio/<int:pk>/', views.deletar_cardapio, name='deletar_cardapio'),
     path('base/', views.base_metodo, name='base_metodo'),
 
 ]

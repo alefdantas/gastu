@@ -49,12 +49,30 @@ def cadastro_de_restaurante(request):
             post_imagem = form.cleaned_data['imagem']
             new_post = Restaurante(cnpj=post_cnpj, nome=post_nome,nome_comercial=post_nome_comercial, descricao=post_descricao, bairro=post_bairro, cidade=post_cidade, imagem=post_imagem)
             new_post.save()
-            return redirect('polls:exibirRestaurante')
+            return redirect('gastu:post_list')
     elif(request.method == 'GET'):
         return render(request, 'cadastrarRestaurante.html', {'form': form})
-def delete_cardapio(request, pk):
-    consulta = Prato.objects.get(pk=pk)
-    consulta.delete()
+def deletar_restaurante(request, pk):
+    post = Restaurante.objects.get(pk=pk)
+    form = FormRestaurante(instance=post)
+    if request.method == 'POST':
+        consulta = Restaurante.objects.get(pk=pk)
+        consulta.delete()    
+        return redirect('gastu:post_list')
+    elif(request.method == 'GET'):
+        return render(request, 'deletarRestaurante.html', {'form': form, 'post': post})
+def deletar_cardapio(request, pk):
+    post = Prato.objects.get(pk=pk)
+    form = FormCardapio(instance=post)
+    if request.method == 'POST':
+        consulta = Prato.objects.get(pk=pk)
+        consulta.delete()    
+        return redirect('polls:exibirCardapio')
+    elif(request.method == 'GET'):
+        return render(request, 'deletarCardapio.html', {'form': form, 'post': post})
+
+
+
 def mapView(request):
     restaurantes = Restaurante.objects.all()
     # Cria form
@@ -73,6 +91,8 @@ def update_cardapio(request, pk):
     form = FormCardapio(instance=post)
     if request.method == 'POST':
         form = FormCardapio(request.POST, instance=post)
+        consulta = Prato.objects.get(pk=pk)
+        consulta.delete()
         print(form.errors );
         if form.is_valid():
             post_foto = form.cleaned_data['foto']
@@ -90,6 +110,8 @@ def update_restaurante(request, pk):
     form = FormRestaurante(instance=post)
     if request.method == 'POST':
         form = FormRestaurante(request.POST, instance=post)
+        consulta = Restaurante.objects.get(pk=pk)
+        consulta.delete()
         print(form.errors );
         if form.is_valid():
             post_cnpj = form.cleaned_data['cnpj']
@@ -101,6 +123,6 @@ def update_restaurante(request, pk):
             post_imagem = form.cleaned_data['imagem']
             new_post = Restaurante(cnpj=post_cnpj, nome=post_nome,nome_comercial=post_nome_comercial, descricao=post_descricao, bairro=post_bairro, cidade=post_cidade, imagem=post_imagem)
             new_post.save()
-            return redirect('polls:exibirRestaurante')
+            return redirect('gastu:post_list')
     elif(request.method == 'GET'):
         return render(request, 'editarRestaurante.html', {'form': form, 'post': post})

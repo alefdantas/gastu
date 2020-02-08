@@ -29,8 +29,6 @@ def post_detail(request, slug):
 def detail(request):
 	return render(request, 'gastu/detail.html')
 
-def detail2(request):
-	return render(request, 'gastu/detail2.html')
 
 
 
