@@ -276,14 +276,14 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -5.865558, lng: -36.762921},
-            zoom: 8
+            center: {lat: -6.447180, lng: -37.069751},
+            zoom: 12
         });
         infoWindow = new google.maps.InfoWindow;
 
         //Adicionando marcadores do banco de dados
-        {% for d in restaurantes %}
-       addMarker({lat:'{{d.latitude}}', lng:'{{d.longitude}}'},"{{d.nome}}", map )
+        {% for d in lista_de_restaurantes %}
+            addMarker({lat:"{{d.latitude}}", lng:"{{d.longitude}}"},"{{d.nome}}", map )
         {% endfor %}
 
 
@@ -318,7 +318,7 @@
     </script>
 
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGH6NlaGmPuhg--nL936Lr4PApB6N5v58&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnFKZuKP3LF5_emGkv3Hit5THMWD3JJ-Y&callback=initMap">
     </script>
 </body>
 

@@ -47,7 +47,9 @@ def cadastro_de_restaurante(request):
             post_bairro = form.cleaned_data['bairro']
             post_cidade = form.cleaned_data['cidade']
             post_imagem = form.cleaned_data['imagem']
-            new_post = Restaurante(cnpj=post_cnpj, nome=post_nome,nome_comercial=post_nome_comercial, descricao=post_descricao, bairro=post_bairro, cidade=post_cidade, imagem=post_imagem)
+            post_latitude = form.cleaned_data['latitude']
+            post_longitude = form.cleaned_data['longitude']
+            new_post = Restaurante(cnpj=post_cnpj, nome=post_nome,nome_comercial=post_nome_comercial, descricao=post_descricao, bairro=post_bairro, cidade=post_cidade, imagem=post_imagem, latitude=post_latitude, longitude=post_longitude)
             new_post.save()
             return redirect('gastu:post_list')
     elif(request.method == 'GET'):
@@ -74,17 +76,8 @@ def deletar_cardapio(request, pk):
 
 
 def mapView(request):
-    restaurantes = Restaurante.objects.all()
-    # Cria form
-    #form = mapForm(request.POST or None)   
-    # Valida e salva
-    # if form.is_valid():
-    #    salvar = form.save(commit=False)
-    #    salvar.save()
-    #    return HttpResponse("Dados inseridos com sucesso!")
-    #
-    # Chama Template
-    return render(request, "gastu/base2.html" ,{"restaurantes":restaurantes})
+    exibir = Restaurante.objects.all()
+    return render(request, "cadastrarRestaurante.html" ,{"form":Restaurante.objects.all()})
 
 def update_cardapio(request, pk):
     post = Prato.objects.get(pk=pk)

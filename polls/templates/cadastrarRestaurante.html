@@ -80,25 +80,30 @@
             </div>
         </div>
     </div>
-
+    <!-- //// inicio do cadastro \\\\ -->
     <div class="content-fluid" align="center" style="margin-top: 120px">
-            <div class="card col-5 mt-lg-3 shadow mx-auto">
-                <div class="card-body">
-                    <h2 class="card-title text-center" style="color: black;">Cadastrar restaurante</h2><br>
-            <form method="POST"  enctype="multipart/form-data" action=".">
+        <div class="card col-5 mt-lg-3 shadow mx-auto">
+            <div class="card-body">
+                <h2 class="card-title text-center" style="color: black;">Cadastrar restaurante</h2><br>
+
+                
+                <form method="POST"  enctype="multipart/form-data" action=".">
+
                 <div class="container" style="width: 500px;" align="center">
                     <div>
                         <div class="container">
                             {% csrf_token %}
                             {{ form.as_p }} 
-                            <br>
+                            <div id="map" style="width: 400px; height: 300px"></div><br>
                             <input class="btn btn-primary col-6" type="submit" value="Adicionar restaurante"></input><br><br>
                         </div>
                     </div>
                 </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
+
 
 <!--============================= FOOTER =============================-->
     <footer class="main-block dark-bg">
@@ -135,6 +140,49 @@
     <!-- Stellar Parallax -->
     <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
 
+    <!-- mapa -->
+
+    <script type="text/javascript">
+      var map, infoWindow;
+      {% for c in form %}
+        var myLat = '{{c.latitude}}';
+        var myLng = '{{c.longitude}}';
+      {% endfor %}
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -6.447180, lng: -37.069751},
+          zoom: 12
+        });
+        infoWindow = new google.maps.InfoWindow;
+
+        // Função de pegar as coordenadas com o clique no mapa
+        google.maps.event.addListener(map, 'click', function(event) {
+          document.getElementById(myLat).value = event.latLng.lat();
+          document.getElementById(myLng).value = event.latLng.lng();
+        });
+
+        function mapDivClicked (event) {
+          var target = document.getElementById('map'),
+          posx = event.pageX - target.offsetLeft,
+          posy = event.pageY - target.offsetTop,
+          bounds = map.getBounds(),
+          neLatlng = bounds.getNorthEast(),
+          swLatlng = bounds.getSouthWest(),
+          startLat = neLatlng.latitude(),
+          endLng = neLatlng.longitude(),
+          endLat = swLatlng.latitude(),
+          startLng = swLatlng.longitude();
+
+          document.getElementById('posX').value = posx;
+          document.getElementById('posY').value = posy;
+          //document.getElementById('latitude').value = startLat + ((posy/350) * (endLat - startLat));
+          //document.getElementById('longitude').value = startLng + ((posx/500) * (endLng - startLng));
+        };
+        
+      }
+    </script>
+
     <!-- Flexslider -->
     <script src="{% static 'js/jquery.flexslider-min.js' %}"></script>
     <script>
@@ -144,6 +192,9 @@
     </script>
     <!-- Main JS -->
     <script src="{% static 'js/main.js' %}"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnFKZuKP3LF5_emGkv3Hit5THMWD3JJ-Y&v=3&libraries=geometry&callback=initMap" defer > </script>
+
 </body>
 
 
