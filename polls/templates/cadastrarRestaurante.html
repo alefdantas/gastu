@@ -144,10 +144,6 @@
 
     <script type="text/javascript">
       var map, infoWindow;
-      {% for c in form %}
-        var myLat = '{{c.latitude}}';
-        var myLng = '{{c.longitude}}';
-      {% endfor %}
 
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -158,8 +154,8 @@
 
         // Função de pegar as coordenadas com o clique no mapa
         google.maps.event.addListener(map, 'click', function(event) {
-          document.getElementById(myLat).value = event.latLng.lat();
-          document.getElementById(myLng).value = event.latLng.lng();
+            document.getElementById(myLat).value = event.latLng.lat(); // myLat e myLng sao os id do input
+            document.getElementById(myLng).value = event.latLng.lng();
         });
 
         function mapDivClicked (event) {

@@ -28,7 +28,7 @@ class FormCardapio(ModelForm):
 class mapForm(forms.ModelForm):
     # Associa formulario ao modelo
     class Meta:
-        model = Usuario
+        model = Restaurante
         fields = ('latitude', 'longitude')
 
 class FormRestaurante(ModelForm):

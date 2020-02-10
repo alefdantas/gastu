@@ -51,7 +51,7 @@ def cadastro_de_restaurante(request):
             post_longitude = form.cleaned_data['longitude']
             new_post = Restaurante(cnpj=post_cnpj, nome=post_nome,nome_comercial=post_nome_comercial, descricao=post_descricao, bairro=post_bairro, cidade=post_cidade, imagem=post_imagem, latitude=post_latitude, longitude=post_longitude)
             new_post.save()
-            return redirect('gastu:post_list')
+            return redirect('polls:cadastro_de_cardapio')
     elif(request.method == 'GET'):
         return render(request, 'cadastrarRestaurante.html', {'form': form})
 def deletar_restaurante(request, pk):
@@ -72,8 +72,6 @@ def deletar_cardapio(request, pk):
         return redirect('polls:exibirCardapio')
     elif(request.method == 'GET'):
         return render(request, 'deletarCardapio.html', {'form': form, 'post': post})
-
-
 
 def mapView(request):
     exibir = Restaurante.objects.all()
