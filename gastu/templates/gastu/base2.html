@@ -284,18 +284,21 @@
         }
 
         function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -6.447180, lng: -37.069751},
-            zoom: 12
-        });
-        infoWindow = new google.maps.InfoWindow;
-
-        //Adicionando marcadores do banco de dados
-        {% for d in lista_de_restaurantes %}
-            addMarker({lat:"{{d.latitude}}", lng:"{{d.longitude}}"},"{{d.nome}}", map )
-        {% endfor %}
-
-
+            var mapOptions = {
+                zoom: 8,
+                center: new google.maps.LatLng(-6.444013, -37.082120),
+                mapTypeId: 'roadmap'
+            };
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            {% for d in lista_de_restaurantes %}
+            var goldenGatePosition = {lat: parseFloat('{{d.latitude}}'),lng: parseFloat('{{d.longitude}}')};
+            var marker = new google.maps.Marker({
+             position: goldenGatePosition,
+             map: map,
+             title: '{{d.nome}}'
+            });
+            {%endfor%}
+            infoWindow = new google.maps.InfoWindow;
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {

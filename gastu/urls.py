@@ -10,6 +10,7 @@ urlpatterns = [
     path('sobre-nos/', views.about, name='about'),
     path('contato/', views.contact, name='contact'),
     path('detail/', views.detail, name='detail'),
+    path('teste/', views.post_list, name='detail'),
  	path('polls/', include('polls.urls')),
      
 ]

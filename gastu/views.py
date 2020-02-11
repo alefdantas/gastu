@@ -4,7 +4,7 @@ from .models import Post
 from polls.models import Restaurante, Prato
 
 def exibeRestaurantes(request):
-    return render(request,'base2.html', {'restaurantes' : Restaurante.objects.all()})
+    return render(request,'gastu/base2.html', {'restaurantes' : Restaurante.objects.all(), 'msg':'oiiii'})
 
 def redirecCardap1(request):
     return render(request,'detail.html', {'prato' : Prato.objects.all()})
