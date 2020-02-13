@@ -17,13 +17,13 @@ class SalvarLogin(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('latitude', 'longitude','email','username','senha','pessoa')
+        fields = ('email','username','senha','pessoa')
 
 class FormCardapio(ModelForm):
 
     class Meta:
         model = Prato
-        fields = ['nome', 'descricao','valor','disponibilidade', 'foto']
+        fields = ['restaurante','nome', 'descricao','valor','disponibilidade', 'foto']
         
 class mapForm(forms.ModelForm):
     # Associa formulario ao modelo
@@ -34,4 +34,4 @@ class mapForm(forms.ModelForm):
 class FormRestaurante(ModelForm):
     class Meta:
         model = Restaurante
-        fields = ['cnpj', 'nome','nome_comercial','descricao', 'bairro', 'cidade','imagem', 'latitude', 'longitude']
+        fields = ['cnpj', 'nome','nome_comercial','descricao', 'imagem', 'latitude', 'longitude']

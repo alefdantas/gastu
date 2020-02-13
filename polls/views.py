@@ -23,12 +23,13 @@ def cadastro_de_cardapio(request):
         form = FormCardapio(request.POST, request.FILES)
         print(form.errors );
         if form.is_valid():
+            post_restaurante = form.cleaned_data['restaurante']
             post_foto = form.cleaned_data['foto']
             post_nome = form.cleaned_data['nome']
             post_descricao = form.cleaned_data['descricao']
             post_valor = form.cleaned_data['valor']
             post_disponibilidade = form.cleaned_data['disponibilidade']
-            new_post = Prato(foto=post_foto, nome=post_nome, descricao=post_descricao, valor=post_valor, disponibilidade=post_disponibilidade)
+            new_post = Prato(restaurante=post_restaurante,foto=post_foto, nome=post_nome, descricao=post_descricao, valor=post_valor, disponibilidade=post_disponibilidade)
             new_post.save()
             return redirect('polls:exibirCardapio')
     elif(request.method == 'GET'):
@@ -44,12 +45,10 @@ def cadastro_de_restaurante(request):
             post_nome = form.cleaned_data['nome']
             post_nome_comercial = form.cleaned_data['nome_comercial']
             post_descricao = form.cleaned_data['descricao']
-            post_bairro = form.cleaned_data['bairro']
-            post_cidade = form.cleaned_data['cidade']
             post_imagem = form.cleaned_data['imagem']
             post_latitude = form.cleaned_data['latitude']
             post_longitude = form.cleaned_data['longitude']
-            new_post = Restaurante(cnpj=post_cnpj, nome=post_nome,nome_comercial=post_nome_comercial, descricao=post_descricao, bairro=post_bairro, cidade=post_cidade, imagem=post_imagem, latitude=post_latitude, longitude=post_longitude)
+            new_post = Restaurante(cnpj=post_cnpj, nome=post_nome,nome_comercial=post_nome_comercial, descricao=post_descricao, imagem=post_imagem, latitude=post_latitude, longitude=post_longitude)
             new_post.save()
             return redirect('polls:cadastro_de_cardapio')
     elif(request.method == 'GET'):
@@ -109,11 +108,11 @@ def update_restaurante(request, pk):
             post_nome = form.cleaned_data['nome']
             post_nome_comercial = form.cleaned_data['nome_comercial']
             post_descricao = form.cleaned_data['descricao']
-            post_bairro = form.cleaned_data['bairro']
-            post_cidade = form.cleaned_data['cidade']
             post_imagem = form.cleaned_data['imagem']
-            new_post = Restaurante(cnpj=post_cnpj, nome=post_nome,nome_comercial=post_nome_comercial, descricao=post_descricao, bairro=post_bairro, cidade=post_cidade, imagem=post_imagem)
+            new_post = Restaurante(cnpj=post_cnpj, nome=post_nome,nome_comercial=post_nome_comercial, descricao=post_descricao,imagem=post_imagem)
             new_post.save()
             return redirect('gastu:post_list')
     elif(request.method == 'GET'):
         return render(request, 'editarRestaurante.html', {'form': form, 'post': post})
+def adminRestaurante(request):
+    return render(request,'adminRestaurante.html', {'restaurantes' : Restaurante.objects.all(),})

@@ -92,7 +92,7 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 {% if p.foto %}
-                <h5>Foto do Prato: <img src= "{% static '{{p.foto}}' %}" /> </h5>
+                <img src="/media/{{ p.foto }}" class="img-fluid" alt="#">
                 {% endif %}
                 <h5>Nome do Prato: {{ p.nome }}</h5>
                 <h5>Descricao do Prato: {{ p.descricao }}<h5>

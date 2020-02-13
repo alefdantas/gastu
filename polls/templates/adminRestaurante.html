@@ -46,11 +46,11 @@
                                     {% if user.is_authenticated %}
                                     <li class="nav-item dropdown">
                                         <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Admin
+                                            User
                                             <span class="icon-arrow-down"></span>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                            <a class="dropdown-item" href="{% url 'polls:cadastro_de_restaurante' %}">Cadastrar restaurante</a>
+                                            <a class="dropdown-item" href="{% url 'polls:cadastro_de_cardapio' %}">Cadastrar Cardapio</a>
                                         </div>
                                        
                                     </li>  
@@ -164,20 +164,17 @@
 
                 {% for r in lista_de_restaurantes %}
                 
-                <div class="col-md-4 featured-responsive" >
+                <div class="col-md-4 featured-responsive">
                     <div class="featured-place-wrap">
 
-                        <a href="{% url 'gastu:detail' %}">
-                            <img src="/media/{{ r.imagem }}" class="img-fluid" alt="">
+                        <a href="{% url 'gastu:detail' %} {{r.id_restaurante}}">
+                            <img src="/media/{{ r.imagem }}" class="img-fluid" alt="#">
 
                             <div class="featured-title-box">
                                 <h6> {{ r.nome }} </h6>
                                 <ul>
                                     <li>
                                         <p>{{ r.descricao }}</p>
-                                    </li>
-                                    <li><span class="icon-location-pin"></span>
-                                        <p>{{ r.cidade }}</p>
                                     </li>
                                 </ul>
                                 <div class="bottom-icons">
