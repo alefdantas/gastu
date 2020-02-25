@@ -1,4 +1,4 @@
-{% load static %}
+is em destaqu{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -156,7 +156,7 @@
                 <div class="col-md-4 featured-responsive" >
                     <div class="featured-place-wrap">
 
-                        <a href="{% url 'gastu:detail' %}">
+                        <a href="{% url 'gastu:detail' %}?id_res={{r.id_restaurante}}">
                             <img src="/media/{{ r.imagem }}" class="img-fluid" alt="">
 
                             <div class="featured-title-box">

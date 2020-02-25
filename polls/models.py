@@ -31,6 +31,8 @@ class Restaurante(models.Model):
     latitude = models.CharField(max_length=200)
     longitude = models.CharField(max_length=200)
     imagem = models.ImageField(upload_to='imagens/')
+
+
 class Prato(models.Model):
     id_prato = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=35)
@@ -39,6 +41,8 @@ class Prato(models.Model):
     disponibilidade = models.CharField(max_length=25)
     foto = models.ImageField(upload_to='media/imagens/')
     restaurante = models.ForeignKey(Restaurante, on_delete=models.CASCADE)
+
+
 class Itens(models.Model):
     nome = models.CharField(max_length=50)
     descricao = models.CharField(max_length=100)

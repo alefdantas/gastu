@@ -27,7 +27,12 @@ def post_detail(request, slug):
     return render(request, 'gastu/post_detail.html', {'post':post})
 
 def detail(request):
-	return render(request, 'gastu/detail.html')
+    # this_object_id = 1
+    this_object_id = request.GET['id_res']
+    r = Restaurante.objects.get(id_restaurante=this_object_id)
+    pratos = Prato.objects.filter(restaurante=r)
+    print(len(pratos))
+    return render(request, 'gastu/detail.html', {'prs':pratos})
 
 
 
