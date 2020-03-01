@@ -23,7 +23,7 @@ class FormCardapio(ModelForm):
 
     class Meta:
         model = Prato
-        fields = ['restaurante','nome', 'descricao','valor','disponibilidade', 'foto']
+        fields = ['restaurante','nome', 'descricao','valor','disponibilidade', 'foto', 'id_prato']
         
 class mapForm(forms.ModelForm):
     # Associa formulario ao modelo

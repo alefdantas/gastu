@@ -151,6 +151,12 @@
                         <div class="booking-checkbox">
                             <p class="reserve-description">{{prts.restaurante.descricao}}</p>
                             <hr>
+                            {% if user.is_authenticated %}
+                            <div class="featured-btn-wrap">
+                                <a href="{% url 'polls:update_restaurante' %}?id_res={{prts.restaurante.id_restaurante}}" class="btn btn-danger">Editar restaurante</a>
+                                <a href="{% url 'polls:cadastro_de_cardapio' %}" class="btn btn-danger">Cadastrar prato</a>
+                            </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

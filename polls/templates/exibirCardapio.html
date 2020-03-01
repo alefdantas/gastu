@@ -82,32 +82,36 @@
           
     </div>
     <!-- BODY CARDAPIO -->
-
     <div class="row">
 
-    {% for carda in prts %}
+        {% for carda in prts %}
 
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 featured-responsive" >
-        <div class="featured-place-wrap" >
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 featured-responsive" >
+            <div class="featured-place-wrap" >
 
-            {% if carda.foto %}
+                {% if carda.foto %}
 
-            <img src="/media/{{ carda.foto }}" class="img-fluid" alt="" >
+                <img src="/media/{{ carda.foto }}" class="img-fluid" alt="" >
 
-            {% endif %}
+                {% endif %}
 
-            <div class="featured-title-box" style="font-weight: bold;" >
+                <div class="featured-title-box" style="font-weight: bold;" >
 
-            Nome do Prato: {{ carda.nome }}<br>
-            Descrição do Prato: {{ carda.descricao }}<br>
-            Valor do Prato: {{ carda.valor }}<br>
-            Disponibilidade do Prato: {{ carda.disponibilidade }}<br></div>
+                    Nome do Prato: {{ carda.nome }}<br>
+                    Descrição do Prato: {{ carda.descricao }}<br>
+                    Valor do Prato: {{ carda.valor }}<br>
+                    Disponibilidade do Prato: {{ carda.disponibilidade }}<br>
+                    
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'polls:update_cardapio' %}?id_upd={{carda.id_prato}}" class="btn btn-danger">Editar prato</a>
+                    {% endif %}
+                </div>
 
+            </div>
         </div>
-    </div>
 
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
 </div>
 
 

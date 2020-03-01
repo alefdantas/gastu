@@ -76,12 +76,12 @@ def mapView(request):
     exibir = Restaurante.objects.all()
     return render(request, "cadastrarRestaurante.html" ,{"form":Restaurante.objects.all()})
 
-def update_cardapio(request, pk):
-    post = Prato.objects.get(pk=pk)
+def update_cardapio(request):
+    this_object_id = request.GET['id_upd']
+    post = Prato.objects.get(id_prato=this_object_id)
     form = FormCardapio(instance=post)
     if request.method == 'POST':
         form = FormCardapio(request.POST, instance=post)
-        consulta = Prato.objects.get(pk=pk)
         consulta.delete()
         print(form.errors );
         if form.is_valid():
@@ -95,13 +95,12 @@ def update_cardapio(request, pk):
             return redirect('polls:exibirCardapio')
     elif(request.method == 'GET'):
         return render(request, 'editarCardapio.html', {'form': form, 'post': post})
-def update_restaurante(request, pk):
-    post = Restaurante.objects.get(pk=pk)
+def update_restaurante(request):
+    this_object_id = request.GET['id_res']
+    post = Restaurante.objects.get(id_restaurante=this_object_id)
     form = FormRestaurante(instance=post)
     if request.method == 'POST':
         form = FormRestaurante(request.POST, instance=post)
-        consulta = Restaurante.objects.get(pk=pk)
-        consulta.delete()
         print(form.errors );
         if form.is_valid():
             post_cnpj = form.cleaned_data['cnpj']
