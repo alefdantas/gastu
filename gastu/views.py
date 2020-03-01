@@ -6,12 +6,6 @@ from polls.models import Restaurante, Prato
 def exibeRestaurantes(request):
     return render(request,'gastu/base2.html', {'restaurantes' : Restaurante.objects.all()})
 
-def redirecCardap1(request):
-    return render(request,'detail.html', {'prato' : Prato.objects.all()})
-
-def redirecCardap2(request):
-    return render(request,'detail.html', {'restaurante' : Restaurante.objects.all()})
-
 def post_list(request):
 	restaurantes = Restaurante.objects.all()
 	return render(request, 'gastu/post_list.html', {'lista_de_restaurantes':restaurantes})
@@ -33,7 +27,4 @@ def detail(request):
     pratos = Prato.objects.filter(restaurante=r)
     print(len(pratos))
     return render(request, 'gastu/detail.html', {'prs':pratos})
-
-
-
 

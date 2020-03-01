@@ -122,21 +122,18 @@
     </div>
     <!--//END BOOKING -->
     <!--============================= RESERVE A SEAT =============================-->
+        {% for prts in prs %}
     <section class="reserve-block">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h5>Comida Brasileira</h5>
-                    {% for prts in prs %}
-                        <h6> {{ prts.nome }} </h6>
-                    {% endfor %}
-                    <p class="reserve-description">Cozinhas inovadoras, combinada com o melhor da cultura brasileira.</p>
+                    <h5>{{prts.restaurante.nome}}</h5>
                 </div>
                 <div class="col-md-6">
                     <div class="reserve-seat-block">
                         <div class="reserve-btn">
                             <div class="featured-btn-wrap">
-                                <a href="{% url 'polls:exibirCardapio' %} {{ prato.id_restaurante }}" class="btn btn-danger">CARDÁPIO</a>
+                                <a href="{% url 'polls:exibircardapio' %}?id_res={{prts.restaurante.id_restaurante}}" class="btn btn-danger">CARDÁPIO</a>
                             </div>
                         </div>
                     </div>
@@ -152,7 +149,7 @@
                 <div class="col-md-8 responsive-wrap">
                     <div class="booking-checkbox_wrap">
                         <div class="booking-checkbox">
-                            <p>{{restaurante.descricao}}</p>
+                            <p class="reserve-description">{{prts.restaurante.descricao}}</p>
                             <hr>
                         </div>
                     </div>
@@ -160,15 +157,12 @@
                 <div class="col-md-4 responsive-wrap">
                     <div class="contact-info">
                         <div id="map" style="width: 403px; height: 291px"></div>
-                        <div class="address">
-                            <span class="icon-location-pin"></span>
-                            <p> {{restaurante.cidade}}<br> 8077, {{restaurante.bairro}}<br></p>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+        {% endfor %}
     <!--//END BOOKING DETAILS -->
     <!--============================= FOOTER =============================-->
     <footer class="main-block dark-bg">
@@ -236,20 +230,38 @@
                 }
             });
         }
+    </script>
+    <script>
+        var map;
 
-        //declarando o mapa
-      var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: '{{ restaurante.latitude }}', lng: '{{restaurante.longitude}}' },
-          zoom: 6
-        });
-        infoWindow = new google.maps.InfoWindow;
+        function addMarker(location, label, map) {
+        var marker = new google.maps.Marker({
+          position: location,
+          label: labels[labelIndex++ % labels.length],
+          map: map
+          });
+        }
+
+        function initMap() {
+            {% for map in prs %}
+            var mapOptions = {
+                zoom: 12,
+                center: new google.maps.LatLng(parseFloat('{{map.restaurante.latitude}}'), parseFloat('{{map.restaurante.longitude}}')),
+                mapTypeId: 'roadmap'
+            };
+            var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            var restaurantePosition = {lat: parseFloat('{{map.restaurante.latitude}}'),lng: parseFloat('{{map.restaurante.longitude}}')};
+            var marker = new google.maps.Marker({
+             position: restaurantePosition,
+             map: map,
+             title: '{{map.restaurante.nome}}'
+            });
+            {%endfor%}
       }
     </script>
 
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGH6NlaGmPuhg--nL936Lr4PApB6N5v58&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnFKZuKP3LF5_emGkv3Hit5THMWD3JJ-Y&callback=initMap">
     </script>
 </body>
 

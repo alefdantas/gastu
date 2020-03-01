@@ -81,26 +81,27 @@
         <h1 class="card-title text-center" style="color: black; font-family: Times New Roman; ">Cardápio</h1><br><br>
           
     </div>
+    <!-- BODY CARDAPIO -->
 
     <div class="row">
 
-    {% for p in pratos %}
+    {% for carda in prts %}
 
     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 featured-responsive" >
         <div class="featured-place-wrap" >
 
-            {% if p.foto %}
+            {% if carda.foto %}
 
-            <img src="/media/{{ p.foto }}" class="img-fluid" alt="" >
+            <img src="/media/{{ carda.foto }}" class="img-fluid" alt="" >
 
             {% endif %}
 
             <div class="featured-title-box" style="font-weight: bold;" >
 
-            Nome do Prato: {{ p.nome }}<br>
-            Descrição do Prato: {{ p.descricao }}<br>
-            Valor do Prato: {{ p.valor }}<br>
-            Disponibilidade do Prato: {{ p.disponibilidade }}<br></div>
+            Nome do Prato: {{ carda.nome }}<br>
+            Descrição do Prato: {{ carda.descricao }}<br>
+            Valor do Prato: {{ carda.valor }}<br>
+            Disponibilidade do Prato: {{ carda.disponibilidade }}<br></div>
 
         </div>
     </div>

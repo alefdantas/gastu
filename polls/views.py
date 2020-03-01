@@ -10,9 +10,9 @@ def base_metodo(request):
     return render(request,'base3.html')
 def menu(request):
     return render(request,'index.html')
-def exibirCardapio(request):
-    exibir = Prato.objects.all().order_by('-created_at')
-    return render(request,'exibirCardapio.html', {'pratos': Prato.objects.all()})
+#def exibirCardapio(request):
+    #exibir = Prato.objects.all().order_by('-created_at')
+    #return render(request,'exibirCardapio.html', {'pratos': Prato.objects.all()})
 def exibirRestaurante(request):
     exibir = Restaurante.objects.all().order_by('-created_at')
     return render(request,'exibirRestaurante.html', {'restaurantes': Restaurante.objects.all()})
@@ -116,3 +116,10 @@ def update_restaurante(request, pk):
         return render(request, 'editarRestaurante.html', {'form': form, 'post': post})
 def adminRestaurante(request):
     return render(request,'adminRestaurante.html', {'restaurantes' : Restaurante.objects.all(),})
+
+def exibeCarda(request):
+    this_object_id = request.GET['id_res']
+    r = Restaurante.objects.get(id_restaurante=this_object_id)
+    pratos = Prato.objects.filter(restaurante=r)
+    print(len(pratos))
+    return render(request, 'exibirCardapio.html', {'prts':pratos})
