@@ -46,15 +46,16 @@
             </button>
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                             <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                   Explore
-                   <span class="icon-arrow-down"></span>
-                 </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="{% url 'gastu:about' %}">Quem somos?</a>
-                                    </div>
+                                {% if user.is_authenticated %}
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{% url 'polls:cadastro_de_cardapio' %}">Adicionar prato</a>
                                 </li>
+                                {% for tag in prs|slice:":1" %}
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{% url 'polls:update_restaurante' %}?id_res={{tag.restaurante.id_restaurante}}">Atualizar restaurante</a>
+                                </li>
+                                {% endfor %}
+                                {% endif %}
                                 <li class="nav-item active">
                                     <a class="nav-link" href="{% url 'gastu:contact' %}">Contato</a>
                                 </li>
@@ -66,8 +67,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{% url 'login' %}">Login</a>
                                     </li>
-                                    {% endif %}
-                                <li><a href="#" class="btn btn-outline-light top-btn"><span class="ti-plus"></span> Add Listing</a></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </nav>
@@ -121,8 +121,8 @@
         </div>
     </div>
     <!--//END BOOKING -->
-    <!--============================= RESERVE A SEAT =============================-->
-        {% for prts in prs %}
+    <!--============================= RESERVE A SEAT =============================-->   
+        {% for prts in prs|slice:":1" %}
     <section class="reserve-block">
         <div class="container">
             <div class="row">
@@ -151,12 +151,6 @@
                         <div class="booking-checkbox">
                             <p class="reserve-description">{{prts.restaurante.descricao}}</p>
                             <hr>
-                            {% if user.is_authenticated %}
-                            <div class="featured-btn-wrap">
-                                <a href="{% url 'polls:update_restaurante' %}?id_res={{prts.restaurante.id_restaurante}}" class="btn btn-danger">Editar restaurante</a>
-                                <a href="{% url 'polls:cadastro_de_cardapio' %}" class="btn btn-danger">Cadastrar prato</a>
-                            </div>
-                            {% endif %}
                         </div>
                     </div>
                 </div>
