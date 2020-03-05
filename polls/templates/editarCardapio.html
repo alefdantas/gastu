@@ -80,23 +80,24 @@
             </div>
         </div>
     </div>
-
+   
     <div class="content-fluid" align="center" style="margin-top: 120px">
         <div class="card col-5 mt-lg-3 shadow mx-auto">
             <div class="card-body">
                 <h3 class="card-title text-center" style="color: black;">Editar prato</h3><br>
                 <h6>Editar: {{form.nome}}</h6>
+                <h6>Editar: {{post.id_prato}}</h6>
             <div>
-
                 <form action="." method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <br>
-                    <input class="btn btn-primary col-3" type="submit" value="Editar"></input><br><br>
+                    <input class="btn btn-primary col-3" type="submit" name="id_upd={{post.id_prato}}" value="Editar"></input><br><br>
                 </form>
             </div>
         </div>
     </div>
+   
 </div>
 
 

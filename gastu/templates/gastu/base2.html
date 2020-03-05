@@ -172,6 +172,9 @@
                                 <div class="bottom-icons">
                                     <div class="open-now">ABERTO AGORA</div>
                                 </div>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'polls:deletar_restaurante' %}?id_delet={{r.id_restaurante}}" class="btn btn-danger">Excluir restaurante</a>
+                                {% endif %}
                             </div>
 <!--                        </a>-->
                     </div>

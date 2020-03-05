@@ -85,11 +85,10 @@
                 <h6>Deletar: {{form.nome}}</h6>
 
                 <div>
-                    <form action="." method="POST">
+                    <form action="." method="GET">
                         {% csrf_token %}
-                        {{ form.as_p }}
                         <br>
-                        <input class="btn btn-primary col-3" type="submit" value="Deletar"></input><br><br>
+                        <input class="btn btn-primary col-3" type="submit" name="id_delet" value="Deletar"></input><br><br>
                     </form>
                 </div>
             </div>

@@ -31,7 +31,7 @@ def cadastro_de_cardapio(request):
             post_disponibilidade = form.cleaned_data['disponibilidade']
             new_post = Prato(restaurante=post_restaurante,foto=post_foto, nome=post_nome, descricao=post_descricao, valor=post_valor, disponibilidade=post_disponibilidade)
             new_post.save()
-            return redirect('polls:exibirCardapio')
+            return redirect('gastu:post_list')
     elif(request.method == 'GET'):
         return render(request, 'cadastrarCardapio.html', {'form': form})
 def cadastro_de_restaurante(request):
@@ -53,46 +53,46 @@ def cadastro_de_restaurante(request):
             return redirect('polls:cadastro_de_cardapio')
     elif(request.method == 'GET'):
         return render(request, 'cadastrarRestaurante.html', {'form': form})
-def deletar_restaurante(request, pk):
-    post = Restaurante.objects.get(pk=pk)
+def deletar_restaurante(request):
+    this_object_id = request.GET['id_delet']
+    post = Restaurante.objects.get(id_restaurante=this_object_id)
     form = FormRestaurante(instance=post)
-    if request.method == 'POST':
-        consulta = Restaurante.objects.get(pk=pk)
+    if request.method == 'GET':
+        consulta = Restaurante.objects.get(id_restaurante=this_object_id)
         consulta.delete()    
-        return redirect('gastu:post_list')
-    elif(request.method == 'GET'):
-        return render(request, 'deletarRestaurante.html', {'form': form, 'post': post})
-def deletar_cardapio(request, pk):
-    post = Prato.objects.get(pk=pk)
+    return redirect('gastu:post_list')
+    
+def deletar_cardapio(request):
+    this_object_id = request.GET['id_delet']
+    post = Prato.objects.get(id_prato=this_object_id)
     form = FormCardapio(instance=post)
-    if request.method == 'POST':
-        consulta = Prato.objects.get(pk=pk)
+    if request.method == 'GET':
+        consulta = Prato.objects.get(id_prato=this_object_id)
         consulta.delete()    
-        return redirect('polls:exibirCardapio')
-    elif(request.method == 'GET'):
-        return render(request, 'deletarCardapio.html', {'form': form, 'post': post})
+    return redirect('gastu:post_list')
+    
 
 def mapView(request):
     exibir = Restaurante.objects.all()
     return render(request, "cadastrarRestaurante.html" ,{"form":Restaurante.objects.all()})
 
 def update_cardapio(request):
-    this_object_id = request.GET['id_upd']
+    this_object_id = request.GET.get("id_upd")
     post = Prato.objects.get(id_prato=this_object_id)
     form = FormCardapio(instance=post)
+    user = request.user
     if request.method == 'POST':
-        form = FormCardapio(request.POST, instance=post)
-        consulta.delete()
-        print(form.errors );
+        form = FormCardapio(request.POST,instance=post)
         if form.is_valid():
+            post_restaurante = form.cleaned_data['restaurante']
             post_foto = form.cleaned_data['foto']
             post_nome = form.cleaned_data['nome']
             post_descricao = form.cleaned_data['descricao']
             post_valor = form.cleaned_data['valor']
             post_disponibilidade = form.cleaned_data['disponibilidade']
-            new_post = Prato(foto=post_foto, nome=post_nome, descricao=post_descricao, valor=post_valor, disponibilidade=post_disponibilidade)
+            new_post = Prato(restaurante=post_restaurante,foto=post_foto, nome=post_nome, descricao=post_descricao, valor=post_valor, disponibilidade=post_disponibilidade)
             new_post.save()
-            return redirect('polls:exibirCardapio')
+        return redirect('gastu:post_list')
     elif(request.method == 'GET'):
         return render(request, 'editarCardapio.html', {'form': form, 'post': post})
 def update_restaurante(request):

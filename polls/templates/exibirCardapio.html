@@ -104,6 +104,7 @@
                     
                     {% if user.is_authenticated %}
                     <a href="{% url 'polls:update_cardapio' %}?id_upd={{carda.id_prato}}" class="btn btn-danger">Editar prato</a>
+                    <a href="{% url 'polls:deletar_cardapio' %}?id_delet={{carda.id_prato}}" class="btn btn-danger">Deletar prato</a>
                     {% endif %}
                 </div>
 
